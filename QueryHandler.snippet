@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>qhandler</Title>
+      <Shortcut>qhandler</Shortcut>
+      <Description>Query Handler</Description>
+      <Author></Author>
+    </Header>
+    <Snippet>
+    <Declarations>
+        <Literal>
+          <ID>ReturnType</ID>
+          <ToolTip>Choose return type</ToolTip>
+          <Default>/*return type*/</Default>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp">
+        <![CDATA[ public class Query : IRequest<$ReturnType$> {}
+        public class Handler : IRequestHandler<Query, $ReturnType$>
+        {
+            private readonly DataContext _context;
+            private readonly ILogger<List> _logger;
+
+            public Handler(DataContext context, ILogger<List> logger)
+            {
+                _context = context;
+                _logger = logger;
+            }
+
+            public async Task<$ReturnType$> Handle(Query request, CancellationToken cancellationToken)
+            {
+                // handler logic goes here
+            }
+        }$end$]]>
+      </Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
