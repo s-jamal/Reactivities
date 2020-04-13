@@ -20,12 +20,10 @@
         public class Handler : IRequestHandler<Query, $ReturnType$>
         {
             private readonly DataContext _context;
-            private readonly ILogger<List> _logger;
 
-            public Handler(DataContext context, ILogger<List> logger)
+            public Handler(DataContext context)
             {
                 _context = context;
-                _logger = logger;
             }
 
             public async Task<$ReturnType$> Handle(Query request, CancellationToken cancellationToken)
@@ -34,6 +32,20 @@
             }
         }$end$]]>
       </Code>
+      <Imports>
+        <Import>
+          <Namespace>MediatR</Namespace>
+        </Import>
+        <Import>
+          <Namespace>Persistence</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Threading</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Threading.Tasks</Namespace>
+        </Import>
+      </Imports>
     </Snippet>
   </CodeSnippet>
 </CodeSnippets>

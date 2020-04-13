@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
@@ -12,14 +10,14 @@ namespace API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class ValuesController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<ValuesController> _logger;
         private readonly DataContext _context;
 
         //public WeatherForecastController(DataContext context)
@@ -27,7 +25,7 @@ namespace API.Controllers
         //    _context = context;
         //}
 
-        public WeatherForecastController(DataContext context, ILogger<WeatherForecastController> logger)
+        public ValuesController(DataContext context, ILogger<ValuesController> logger)
         {
             _context = context;
             _logger = logger;
@@ -44,6 +42,12 @@ namespace API.Controllers
         public async Task<ActionResult<Value>> Get(int id)
         {
             var value = await _context.Values.FindAsync(id);
+
+            if (value == null)
+            {
+                return NotFound();
+            }
+
             return Ok(value);
         }
 
